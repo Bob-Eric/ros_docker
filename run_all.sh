@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ENABLE_DBUS=true
+
 # Function to run Docker containers
 run_container() {
   local tag=$1
@@ -8,6 +10,8 @@ run_container() {
   echo "Running Docker container for $tag..."
   docker run -d \
     --name $name \
+    $( $ENABLE_DBUS && echo "--privileged" ) \
+    $( $ENABLE_DBUS && echo "-e DBUS_SYSTEM_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket" ) \
     --network=host \
     --ipc=host \
     --pid=host \
