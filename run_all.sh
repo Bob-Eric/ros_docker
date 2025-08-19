@@ -3,31 +3,26 @@
 # Function to run Docker containers
 run_container() {
   local tag=$1
+  local name=$2
 
   echo "Running Docker container for $tag..."
-  docker run -it --rm=false \
-    --network host \
-    -e DISPLAY=$DISPLAY \
-    -e QT_X11_NO_MITSHM=1 \
-    -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-    -e XAUTHORITY=$XAUTH \
-    -v /etc/localtime:/etc/localtime:ro \
-    -e SSH_AUTH_SOCK -v /run/user/1000/keyring/ssh:/run/user/1000/keyring/ssh \
-    -v $XAUTH:$XAUTH \
-    --gpus 'all,"capabilities=compute,video,graphics,utility"' \
-    $tag zsh
+  docker run -d \
+    --name $name \
+    --network=host \
+    --ipc=host \
+    --pid=host \
+    --cap-add=SYS_PTRACE \
+    --gpus all \
+    --shm-size=1024m \
+    -e USER=ubuntu \
+    -e PASSWORD=ubuntu \
+    -e GID=$(id -g) \
+    -e UID=$(id -u) \
+    -e REMOTE_DESKTOP=kasmvnc \
+    $tag
 }
 
-# Run container for noetic-zsh
-run_container "ros:noetic-zsh"
-
-# Run container for noetic-zsh-cuda
-run_container "ros:noetic-zsh-cuda"
-
-# Run container for noetic-zsh-pytorch
-run_container "ros:noetic-zsh-pytorch"
-
-# Run container for noetic-zsh-cuda-pytorch
-run_container "ros:noetic-zsh-cuda-pytorch"
+run_container "ros:noetic" "noetic"
+run_container "ros:humble" "humble"
 
 echo "All containers are running."

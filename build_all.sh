@@ -10,9 +10,7 @@ build_image() {
 }
 
 # Build images for each directory
-build_image "noetic-zsh" "ros:noetic-zsh"
-build_image "noetic-zsh-cuda" "ros:noetic-zsh-cuda"
-build_image "noetic-zsh-cuda-pytorch" "ros:noetic-zsh-cuda-pytorch"
-build_image "noetic-zsh-pytorch" "ros:noetic-zsh-pytorch"
+build_image "noetic" "ros:noetic"
+build_image "humble" "ros:humble"
 
 echo "All images built successfully."

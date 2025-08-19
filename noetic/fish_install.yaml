@@ -1,0 +1,13 @@
+chooses:
+- choose: 1
+  desc: ''
+- choose: 1
+  desc: 更换系统源再继续安装
+- choose: 2
+  desc: 更换系统源并清理第三方源
+- choose: 1
+  desc: 自动测速选择最快的源
+- choose: 3
+  desc: noetic(ROS1)
+- choose: 1
+  desc: noetic(ROS1)桌面版

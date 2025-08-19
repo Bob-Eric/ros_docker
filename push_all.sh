@@ -14,10 +14,7 @@ push_image() {
 registry_base="registry.cn-hangzhou.aliyuncs.com/chy-sci"
 
 # Push images
-push_image "ros:noetic-zsh" "$registry_base/ros:noetic-zsh"
-push_image "ros:noetic-zsh-pytorch" "$registry_base/ros:noetic-zsh-pytorch"
-push_image "ros:noetic-zsh-cuda" "$registry_base/ros:noetic-zsh-cuda"
-push_image "ros:noetic-zsh-cuda-pytorch" "$registry_base/ros:noetic-zsh-cuda-pytorch"
+push_image "ros:noetic" "$registry_base/ros:noetic"
+push_image "ros:humble" "$registry_base/ros:humble"
 
 echo "All images have been pushed."
-

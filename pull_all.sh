@@ -14,9 +14,7 @@ pull_image() {
 registry_base="registry.cn-hangzhou.aliyuncs.com/chy-sci"
 
 # Pull images
-pull_image "ros:noetic-zsh" "$registry_base/ros:noetic-zsh"
-pull_image "ros:noetic-zsh-pytorch" "$registry_base/ros:noetic-zsh-pytorch"
-pull_image "ros:noetic-zsh-cuda" "$registry_base/ros:noetic-zsh-cuda"
-pull_image "ros:noetic-zsh-cuda-pytorch" "$registry_base/ros:noetic-zsh-cuda-pytorch"
+pull_image "ros:noetic" "$registry_base/ros:noetic"
+pull_image "ros:humble" "$registry_base/ros:humble"
 
 echo "All images have been pulled."
