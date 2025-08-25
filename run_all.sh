@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# 是否启用 DBUS
 ENABLE_DBUS=true
 
-# Function to run Docker containers
+# 运行 Docker 容器的函数
 run_container() {
   local tag=$1
   local name=$2
@@ -26,7 +27,19 @@ run_container() {
     $tag
 }
 
-run_container "ros:noetic" "noetic"
-run_container "ros:humble" "humble"
-
-echo "All containers are running."
+# 通过参数选择运行 noetic 或 humble 或全部
+case "$1" in
+  noetic)
+    run_container "ros:noetic" "noetic"
+    echo "ROS Noetic container is running."
+    ;;
+  humble)
+    run_container "ros:humble" "humble"
+    echo "ROS Humble container is running."
+    ;;
+  *)
+    run_container "ros:noetic" "noetic"
+    run_container "ros:humble" "humble"
+    echo "All containers are running."
+    ;;
+esac
